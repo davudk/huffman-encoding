@@ -35,15 +35,6 @@ public final class Huffman {
             HuffmanCharacter[] huffChars = getHuffmanChars(root);
             int totalBitCount = computeBitCount(huffChars, charFreq);
 
-            // System.out.println("bytes: " + (totalBitCount / 8) + "  bits: " + (totalBitCount % 8));
-
-            // for (int i = 0; i < huffChars.length; i++) {
-            //     if (huffChars[i] == null) continue;
-            //     HuffmanCharacter h = huffChars[i];
-            //     HuffmanNode n = h.getNode();
-            //     System.out.println((char)n.getValue() + " --> x" + n.getFreq());
-            // }
-
             // first write encoding
             writer.writeInt(validCharCount);
             for (int i = 0; i < charFreq.length; i++) {
@@ -91,39 +82,6 @@ public final class Huffman {
                     }
                 }
             }
-
-            // byte bits = 0;
-            // int bitCount = 0;
-			// while ((value = reader.read()) >= 0) {
-            //     if (value < ARRAY_SIZE) {
-            //         HuffmanCharacter c = huffChars[value];
-                    
-            //         int remaining = c.getBitCount();
-            //         while (remaining > 0) {
-            //             int bitsNeeded = BITS_PER - bitCount;
-
-            //             if (remaining <= bitsNeeded) {
-            //                 int shiftBy = bitsNeeded - remaining;
-            //                 int cropped = (c.getBitValue() & ((1 << remaining) - 1)) << shiftBy;
-            //                 bits = (byte)(bits | cropped);
-            //                 bitCount += remaining;
-            //                 remaining = 0;
-            //             } else {
-            //                 int shiftBy = remaining - bitsNeeded;
-            //                 int cropped = (c.getBitValue() >> shiftBy) & ((1 << bitsNeeded) - 1);
-            //                 bits = (byte)(bits | cropped);
-            //                 remaining -= bitsNeeded;
-            //                 bitCount = BITS_PER;
-            //             }
-
-            //             if (bitCount == BITS_PER) {
-            //                 writer.writeByte(bits);
-            //                 bitCount = 0;
-            //                 bits = 0;
-            //             }
-            //         }
-            //     }
-            // }
 
             if (bitCount > 0) {               
                 writer.writeByte(bits);
